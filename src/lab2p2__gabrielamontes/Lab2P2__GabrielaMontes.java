@@ -55,9 +55,10 @@ public class Lab2P2__GabrielaMontes {
             switch (registro) {
                 case 1:
                     //crear
-                    crear();
+                    crear(objetos);
                     break;
                 case 2:
+                    listar(objetos);
                     break;
                 case 3:
                     break;
@@ -136,6 +137,38 @@ public static void solar(ArrayList objetos){
     int area=(largo*ancho);
     
 }
+
+public static void listar(ArrayList objetos){
+    Scanner entrada = new Scanner(System.in);
+    System.out.println("Ingrese si deasea listar1. casa, 2. edificio, 3. solar: ");
+    int listar=entrada.nextInt();
+    switch(listar){
+        case 1:
+            for (Object o: objetos) {
+            if(o instanceof Casa){
+                System.out.println(objetos.indexOf(o)+" "+o);
+            }
+    }
+            break;
+        case 2:
+            for (Object o: objetos) {
+            if(o instanceof Edificio){
+                System.out.println(objetos.indexOf(o)+" "+o);
+            }
+    }
+            break;
+        case 3:
+            for (Object o: objetos) {
+            if(o instanceof Solar){
+                System.out.println(objetos.indexOf(o)+" "+o);
+            }
+    }
+            break;
+    }
+    }
+
+
+
 
 //clase
 }
