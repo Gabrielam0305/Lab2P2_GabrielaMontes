@@ -435,23 +435,19 @@ public class Lab2P2__GabrielaMontes {
                 listarcasas(objetos);
                 System.out.println("Ingrese la posición de la casa que quiere modificar");
                 int casa = entrada.nextInt();
-
+                modificarcasa(objetos, casa);
                 break;
             case 2:
                 listaredificios(objetos);
                 System.out.println("Ingrese la posición del edificio que quiere modificar");
                 int edificio = entrada.nextInt();
-                System.out.println("Ingrese el nombre del nuevo dueno");
-                String dueedi = entrada.nextLine();
-                ((Edificio) objetos.get(edificio)).setDueño(dueedi);
+                modificaredificio(objetos, edificio);
                 break;
             case 3:
                 listarsolares(objetos);
                 System.out.println("Ingrese la posición del edificio que quiere modificar");
                 int solar = entrada.nextInt();
-                System.out.println("Ingrese el nombre del nuevo dueno");
-                String duesol = entrada.nextLine();
-                ((Solar) objetos.get(solar)).setDueño(duesol);
+                modificarsolar(objetos, solar);
                 break;
         }
     }
@@ -516,6 +512,55 @@ public class Lab2P2__GabrielaMontes {
                 int numcuartos = entrada.nextInt();
                 ((Casa) objetos.get(pos)).setNumcuartos(numcuartos);
                 break;
+
+        }
+    }
+     public static void modificaredificio(ArrayList objetos, int pos) {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Que desea modificar: 1. Numero de pisos \n"
+                + "2. Cantidad de locales \n"
+                + "3. Direccion");
+        int mod = entrada.nextInt();
+        switch (mod) {
+            case 1:
+                System.out.println("Ingrese el nuevo numero de pisos");
+                int numedi = entrada.nextInt();
+                ((Edificio) objetos.get(pos)).setNumerodepisos(numedi);
+                break;
+            case 2:
+              System.out.println("Ingrese el nuevo numero de locales");
+                int numloc= entrada.nextInt();
+                ((Edificio) objetos.get(pos)).setNumerodepisos(numloc);
+                break;
+            case 3:
+                System.out.println("Ingrese la nueva direccion: ");
+                String dir = entrada.nextLine();
+                ((Edificio) objetos.get(pos)).setDireccionporreferencia(dir);
+                break;
+              
+           
+
+        }
+    }
+          public static void modificarsolar(ArrayList objetos, int pos) {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Que desea modificar: 1. Ancho \n"
+                + "2. Largo");
+        int mod = entrada.nextInt();
+        switch (mod) {
+            case 1:
+                System.out.println("Ingrese el nuevo ancho");
+                int numancho = entrada.nextInt();
+                ((Solar) objetos.get(pos)).setNumancho(numancho);
+                break;
+            case 2:
+                System.out.println("Ingrese el nuevo ancho");
+                int numlargo = entrada.nextInt();
+                ((Solar) objetos.get(pos)).setNumlargo(numlargo);
+                break;
+            
+              
+           
 
         }
     }
