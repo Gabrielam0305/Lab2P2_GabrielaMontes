@@ -4,8 +4,10 @@
  */
 package lab2p2__gabrielamontes;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JColorChooser;
 
 /**
  *
@@ -110,6 +112,7 @@ public static void casa(ArrayList objetos){
     System.out.println("Ingrese el numero de bloque: ");
     int bloc=entrada.nextInt();
     System.out.println("Ingrese el color: ");
+    Color col=JColorChooser.showDialog(null, "    Seleccione el color", Color.black);
     System.out.println("Ingrese el numero de baños: ");
     int baños=entrada.nextInt();
     System.out.println("Ingrese el ancho: ");
@@ -118,6 +121,7 @@ public static void casa(ArrayList objetos){
     int largo=entrada.nextInt();
     System.out.println("Ingrese el numero de cuartos: ");
     int cuartos=entrada.nextInt();
+    Casa c=new Casa(num, bloc, col, ancho, largo, baños, cuartos);
 }
 public static void edificio(ArrayList objetos){
     Scanner entrada = new Scanner(System.in);
@@ -127,7 +131,9 @@ public static void edificio(ArrayList objetos){
     int locales=entrada.nextInt();
     System.out.println("Ingrese la dirección por referencia: ");
     String direccion =entrada.nextLine();
+    Edificio e=new Edificio(num, locales, direccion);
 }
+
 public static void solar(ArrayList objetos){
     Scanner entrada = new Scanner(System.in);
     System.out.println("Ingrese el ancho: ");
@@ -135,7 +141,7 @@ public static void solar(ArrayList objetos){
     System.out.println("Ingrese el largo: ");
     int largo =entrada.nextInt();
     int area=(largo*ancho);
-    
+    Solar s=new Solar(ancho, largo, area);
 }
 
 public static void listar(ArrayList objetos){
