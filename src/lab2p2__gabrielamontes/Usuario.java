@@ -41,7 +41,7 @@ public class Usuario {
     }
 
     public String getUsuariousername() {
-        return usuariousername;
+        return this.usuariousername;
     }
 
     public void setUsuariousername(String usuariousername) {
@@ -55,5 +55,11 @@ public class Usuario {
     public void setUsuariocontraseña(String usuariocontraseña) {
         this.usuariocontraseña = usuariocontraseña;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "usuarionombre=" + usuarionombre + ", usuarioedad=" + usuarioedad + ", usuariousername=" + usuariousername + ", usuariocontrase\u00f1a=" + usuariocontraseña + '}';
+    }
+    
     
 }
