@@ -65,4 +65,10 @@ public class Edificio {
     public void setEstado(String estado) {
         this.estado = estado;
 }
+
+    @Override
+    public String toString() {
+        return "El edificio " + "tiene " + numerodepisos + " pisos, " + cantidaddelocales + " locales, y la direccion de " + direccionporreferencia + ", el dueño es " + dueño + ", y el estado es " + estado + '}';
+    }
+    
 }

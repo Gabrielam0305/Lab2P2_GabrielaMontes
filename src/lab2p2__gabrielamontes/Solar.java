@@ -63,5 +63,10 @@ public class Solar {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "El Solar " + "es de ancho " + numancho + ", largo " + numlargo + ", area " + area + ", su dueño es " + dueño + ", y su estado es " + estado + '}';
+    }
     
 }

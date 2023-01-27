@@ -191,7 +191,7 @@ public class Lab2P2__GabrielaMontes {
         int bloc = entrada.nextInt();
         System.out.println("Ingrese el color: negro, gris, blanco");
         String col = entrada.nextLine();
-        while ((col != "negro") || (col != "gris") || (col != "blanco")) {
+        while ((col!= "negro") || (col!= "gris") || (col!= "blanco")) {
             System.out.println("Color no valido");
             System.out.println("Ingrese el color: negro, gris, blanco");
             col = entrada.nextLine();

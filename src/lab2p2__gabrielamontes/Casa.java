@@ -106,5 +106,11 @@ public class Casa {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "La casa es" + " de numero " + numerodecasa + ", numero de bloque " + numerodebloque + ", con color " + colorcasa + ", tiene un ancho" + numancho + ", un largo de " + numlargo + ", un numero de baños de " + numbaños + ", un numero de cuartos de " + numcuartos + ", el dueno es " + dueño + ", y el estado es " + estado + '}';
+    }
+    
     
 }
