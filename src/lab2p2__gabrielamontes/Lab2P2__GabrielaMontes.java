@@ -69,7 +69,7 @@ public class Lab2P2__GabrielaMontes {
     public static void validacionestados (ArrayList objetos, ArrayList<Usuario>usuarios){
         Usuario temp=login(usuarios);
         if (temp.getUsuariousername().equals("admin")&&temp.getUsuariocontraseña().equals("admin1234")) {
-            //ejercicio2
+            estados(objetos);
         }else{
             System.out.println("Usuario no valido, solo el admin puede acceder");
         }
@@ -97,6 +97,7 @@ public class Lab2P2__GabrielaMontes {
                 case 4:
                     break;
                 case 5:
+                    comprar(objetos);
                     break;
                 
             }
@@ -363,6 +364,47 @@ public static void listarsolares (ArrayList objetos){
             }
     }
 }
+public static void estados (ArrayList objetos){
+    Scanner entrada = new Scanner(System.in);
+    System.out.println("A que le desea cambiar el estado: 1. Casas \n 2. Edificios");
+    int estado=entrada.nextInt();
+    switch(estado){
+        case 1:
+            listarcasas(objetos);
+            System.out.println("Ingrese la posición de la casa que quiere modificar");
+             int casa=entrada.nextInt();
+             if (((Casa)objetos.get(casa)).getEstado().equals(null)) {
+                ((Casa)objetos.get(casa)).setEstado("En espera de construccion");
+            } else if (((Casa)objetos.get(casa)).getEstado().equalsIgnoreCase("En espera de contruccion")) {
+                ((Casa)objetos.get(casa)).setEstado("En construccion");
+            }else if (((Casa)objetos.get(casa)).getEstado().equalsIgnoreCase("En construccion")) {
+                ((Casa)objetos.get(casa)).setEstado("lista");
+                
+            }else if (((Casa)objetos.get(casa)).getEstado().equalsIgnoreCase("lista")) {
+                ((Casa)objetos.get(casa)).setEstado("En espera de demolicion");
+             }else {
+                ((Casa)objetos.get(casa)).setEstado(null);   
+            }
+            break;
+        case 2:
+            listaredificios(objetos);
+             System.out.println("Ingrese la posición del edificio que quiere modificar");
+             int edificio=entrada.nextInt();
+             if (((Edificio)objetos.get(edificio)).getEstado().equals(null)) {
+                ((Edificio)objetos.get(edificio)).setEstado("En espera de construccion");
+            } else if (((Edificio)objetos.get(edificio)).getEstado().equalsIgnoreCase("En espera de contruccion")) {
+                ((Edificio)objetos.get(edificio)).setEstado("En construccion");
+            }else if (((Edificio)objetos.get(edificio)).getEstado().equalsIgnoreCase("En construccion")) {
+                ((Edificio)objetos.get(edificio)).setEstado("lista");
+                
+            }else if (((Edificio)objetos.get(edificio)).getEstado().equalsIgnoreCase("lista")) {
+                ((Edificio)objetos.get(edificio)).setEstado("En espera de demolicion");
+             }else {
+                ((Edificio)objetos.get(edificio)).setEstado(null);   
+            }
+            break;
 
+    }
+}
 //clase
 }
