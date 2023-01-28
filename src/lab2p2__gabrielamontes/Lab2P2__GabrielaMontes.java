@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package lab2p2__gabrielamontes;
 
 import java.awt.Color;
@@ -9,10 +6,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JColorChooser;
 
-/**
- *
- * @author Gabriela Montes
- */
 public class Lab2P2__GabrielaMontes {
 
     /**
@@ -60,9 +53,9 @@ public class Lab2P2__GabrielaMontes {
     public static void validacion(ArrayList objetos, ArrayList<Usuario> usuarios) {
         Usuario temp = login(usuarios);
         if (temp.getUsuariousername().equals("admin") && temp.getUsuariocontraseña().equals("admin1234")) {
-            registroadmin(objetos);
+            registroadmin(objetos, usuarios);
         } else {
-            registrousuario(objetos);
+            registrousuario(objetos,usuarios);
         }
     }
 
@@ -75,13 +68,13 @@ public class Lab2P2__GabrielaMontes {
         }
     }
 
-    static void registroadmin(ArrayList objetos) {
+    static void registroadmin(ArrayList objetos, ArrayList<Usuario> usuarios) {
         Scanner entrada = new Scanner(System.in);
         System.out.println("1. Crear\n"
-                + " 2. Listar \n"
+                + "2. Listar \n"
                 + "3. Modificar \n"
                 + "4. Borrar \n"
-                + "5. Vender\n"
+                + "5. Vender \n"
                 + "6. Salir");
         int registro = entrada.nextInt();
         while (registro != 6) {
@@ -100,16 +93,16 @@ public class Lab2P2__GabrielaMontes {
                     borrar(objetos);
                     break;
                 case 5:
-                    comprar(objetos);
+                    comprar(objetos, usuarios);
                     break;
 
             }
             //fin switch
             System.out.println("1. Crear,\n"
-                    + " 2Listar, \n"
+                    + "2. Listar, \n"
                     + "3. Modificar \n"
                     + "4. Borrar \n"
-                    + "5. Comprar"
+                    + "5. Comprar\n"
                     + "6. Salir");
             registro = entrada.nextInt();
 
@@ -117,10 +110,10 @@ public class Lab2P2__GabrielaMontes {
 //registro
     }
 
-    public static void registrousuario(ArrayList objetos) {
+    public static void registrousuario(ArrayList objetos, ArrayList<Usuario> usuarios) {
         Scanner entrada = new Scanner(System.in);
         System.out.println("1. Crear,\n"
-                + " 2Listar, \n"
+                + "2. Listar, \n"
                 + "3. Modificar \n"
                 + "4. Borrar \n"
                 + "5. comprar"
@@ -141,14 +134,14 @@ public class Lab2P2__GabrielaMontes {
                     System.out.println("Opcion no es accesible");
                     break;
                 case 5:
-                    comprar(objetos);
+                    comprar(objetos, usuarios);
                     //comprar
                     break;
 
             }
             //fin while
             System.out.println("1. Crear,\n"
-                    + " 2Listar, \n"
+                    + "2. Listar, \n"
                     + "3. Modificar \n"
                     + "4. Borrar \n"
                     + "5. Comprar"
@@ -225,7 +218,7 @@ public class Lab2P2__GabrielaMontes {
         System.out.println("Ingrese la cantidad de locales: ");
         int locales = entrada.nextInt();
         entrada = new Scanner(System.in);
-        System.out.println("Ingrese la dirección por referencia: ");
+        System.out.println("Ingrese la direccion por referencia: ");
         String direccion = entrada.nextLine();
         Edificio e = new Edificio(num, locales, direccion," ");
         objetos.add(e);
@@ -277,7 +270,7 @@ public class Lab2P2__GabrielaMontes {
 
     public static Usuario login(ArrayList<Usuario> usuarios) {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("Necesita ingresar para acceder al registro");
+        System.out.println("Necesita ingresar para acceder");
         System.out.println("Username: ");
         String username = entrada.nextLine();
         System.out.println("Contrasena: ");
@@ -320,37 +313,38 @@ public class Lab2P2__GabrielaMontes {
         }
     }
 
-    public static void comprar(ArrayList objetos) {
+    public static void comprar(ArrayList objetos, ArrayList<Usuario> usuarios) {
         Scanner entrada = new Scanner(System.in);
+         Usuario temp = login(usuarios);
         System.out.println("Que desea comprar: 1. Casas \n 2. Edificios \n 3. Solares");
         int comprar = entrada.nextInt();
         switch (comprar) {
             case 1:
                 listarcasas(objetos);
-                System.out.println("Ingrese la posición de la casa que quiere modificar");
+                System.out.println("Ingrese la posicion de la casa que quiere modificar");
                 int casa = entrada.nextInt();
                 entrada = new Scanner(System.in);
-                System.out.println("Ingrese el nombre del nuevo dueno");
-                String duecasa = entrada.nextLine();
+                String duecasa = temp.getUsuarionombre();
                 ((Casa) objetos.get(casa)).setDueño(duecasa);
+                 System.out.println("Casa vendida");
                 break;
             case 2:
                 listaredificios(objetos);
-                System.out.println("Ingrese la posición del edificio que quiere modificar");
+                System.out.println("Ingrese la posicion del edificio que quiere modificar");
                 int edificio = entrada.nextInt();
                 entrada = new Scanner(System.in);
-                System.out.println("Ingrese el nombre del nuevo dueno");
-                String dueedi = entrada.nextLine();
+                String dueedi = temp.getUsuarionombre();
                 ((Edificio) objetos.get(edificio)).setDueño(dueedi);
+                 System.out.println("edificio vendido");
+                
                 break;
             case 3:
                 listarsolares(objetos);
-                System.out.println("Ingrese la posición del edificio que quiere modificar");
+                System.out.println("Ingrese la posicion del edificio que quiere modificar");
                 int solar = entrada.nextInt();
-                entrada = new Scanner(System.in);
-                System.out.println("Ingrese el nombre del nuevo dueno");
-                String duesol = entrada.nextLine();
+                String duesol = temp.getUsuarionombre();
                 ((Solar) objetos.get(solar)).setDueño(duesol);
+                 System.out.println("Solar vendido");
                 break;
         }
     }
@@ -391,7 +385,7 @@ public class Lab2P2__GabrielaMontes {
             case 1:
                 
                listarcasas(objetos);
-                System.out.println("Ingrese la posición de la casa que quiere modificar");
+                System.out.println("Ingrese la posicion de la casa que quiere modificar");
                 int casa = entrada.nextInt();
                 entrada = new Scanner(System.in);
                 System.out.println("Ingrese el nuevo estado");
@@ -412,7 +406,7 @@ public class Lab2P2__GabrielaMontes {
                 break;
             case 2:
                 listaredificios(objetos);
-                System.out.println("Ingrese la posición del edificio que quiere modificar");
+                System.out.println("Ingrese la posicion del edificio que quiere modificar");
                 int edificio = entrada.nextInt();
                 entrada = new Scanner(System.in);
                 System.out.println("Ingrese el nuevo estado");
@@ -438,6 +432,7 @@ public class Lab2P2__GabrielaMontes {
                 break;
 
         }
+        System.out.println("Estado cambiado");
     }
 
     public static void borrar(ArrayList objetos) {
@@ -448,6 +443,7 @@ public class Lab2P2__GabrielaMontes {
         System.out.println("Escriba el numero de inmueble/solar que desea borrar ");
         int borrar = entrada.nextInt();
         objetos.remove(borrar);
+        System.out.println("inmueble/solar eliminado");
     }
 
     public static void modificar(ArrayList objetos) {
@@ -478,7 +474,8 @@ public class Lab2P2__GabrielaMontes {
 
     public static void modificarcasa(ArrayList objetos, int pos) {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("Que desea modificar: 1. Numero de casa \n"
+        System.out.println("Que desea modificar: \n "
+                + "1. Numero de casa \n"
                 + "2. Numero de bloque \n"
                 + "3. Color\n"
                 + "4. Ancho\n"
@@ -539,10 +536,12 @@ public class Lab2P2__GabrielaMontes {
                 break;
 
         }
+        System.out.println("Modificacion realizada ");
     }
      public static void modificaredificio(ArrayList objetos, int pos) {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("Que desea modificar: 1. Numero de pisos \n"
+        System.out.println("Que desea modificar: "
+                + "\n 1. Numero de pisos \n"
                 + "2. Cantidad de locales \n"
                 + "3. Direccion");
         int mod = entrada.nextInt();

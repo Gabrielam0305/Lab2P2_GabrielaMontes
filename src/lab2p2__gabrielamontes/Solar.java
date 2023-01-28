@@ -66,7 +66,7 @@ public class Solar {
 
     @Override
     public String toString() {
-        return "El Solar " + "es de ancho " + numancho + ", largo " + numlargo + ", area " + area + ", su dueño es " + dueño + ", y su estado es " + estado + '}';
+        return "El Solar " + "es de ancho " + numancho + ", largo " + numlargo + ", area " + area + ", su dueno es " + dueño + ", y su estado es " + estado + '}';
     }
     
 }

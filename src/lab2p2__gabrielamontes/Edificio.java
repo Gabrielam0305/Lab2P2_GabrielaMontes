@@ -71,7 +71,7 @@ public class Edificio {
 
     @Override
     public String toString() {
-        return "El edificio " + "tiene " + numerodepisos + " pisos, " + cantidaddelocales + " locales, y la direccion de " + direccionporreferencia + ", el dueño es " + dueño + ", y el estado es " + estado +'}';
+        return "El edificio " + "tiene " + numerodepisos + " pisos, " + cantidaddelocales + " locales, y la direccion de " + direccionporreferencia + ", el dueno es " + dueño + ", y el estado es " + estado +'}';
     }
     
 }
