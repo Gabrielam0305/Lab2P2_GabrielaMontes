@@ -45,7 +45,6 @@ public class Lab2P2__GabrielaMontes {
                     break;
                 case 3:
                     entrar(usuarios);
-                    logout(usuarios);
                     break;
             }
             System.out.println("1. Registro de Inmueble/Solar\n"
@@ -70,7 +69,7 @@ public class Lab2P2__GabrielaMontes {
     public static void validacionestados(ArrayList objetos, ArrayList<Usuario> usuarios) {
         Usuario temp = login(usuarios);
         if (temp.getUsuariousername().equals("admin") && temp.getUsuariocontraseña().equals("admin1234")) {
-            estados(objetos);
+           estados(objetos);
         } else {
             System.out.println("Usuario no valido, solo el admin puede acceder");
         }
@@ -95,6 +94,7 @@ public class Lab2P2__GabrielaMontes {
                     listar(objetos);
                     break;
                 case 3:
+                    modificar(objetos);
                     break;
                 case 4:
                     borrar(objetos);
@@ -141,6 +141,7 @@ public class Lab2P2__GabrielaMontes {
                     System.out.println("Opcion no es accesible");
                     break;
                 case 5:
+                    comprar(objetos);
                     //comprar
                     break;
 
@@ -176,7 +177,7 @@ public class Lab2P2__GabrielaMontes {
                     break;
             }
             //fin while
-            System.out.println("1.Casa \n 2. Edificio \n 3. Solar \n 4. Salir");
+            System.out.println("Desea crear otar vez: 1.Casa \n 2. Edificio \n 3. Solar \n 4. Salir");
             crear = entrada.nextInt();
         }
 
@@ -189,9 +190,10 @@ public class Lab2P2__GabrielaMontes {
         int num = entrada.nextInt();
         System.out.println("Ingrese el numero de bloque: ");
         int bloc = entrada.nextInt();
+        entrada = new Scanner(System.in);
         System.out.println("Ingrese el color: negro, gris, blanco");
         String col = entrada.nextLine();
-        while ((col!= "negro") || (col!= "gris") || (col!= "blanco")) {
+        while (!((col.equals("negro")) || (col.equals("gris"))|| (col.equals("blanco")))) {
             System.out.println("Color no valido");
             System.out.println("Ingrese el color: negro, gris, blanco");
             col = entrada.nextLine();
@@ -204,7 +206,7 @@ public class Lab2P2__GabrielaMontes {
             color = Color.WHITE;
         }
 
-        System.out.println("Ingrese el numero de baños: ");
+        System.out.println("Ingrese el numero de banos: ");
         int baños = entrada.nextInt();
         System.out.println("Ingrese el ancho: ");
         int ancho = entrada.nextInt();
@@ -212,7 +214,7 @@ public class Lab2P2__GabrielaMontes {
         int largo = entrada.nextInt();
         System.out.println("Ingrese el numero de cuartos: ");
         int cuartos = entrada.nextInt();
-        Casa c = new Casa(num, bloc, color, ancho, largo, baños, cuartos);
+        Casa c = new Casa(num, bloc, color, ancho, largo, baños, cuartos, " ");
         objetos.add(c);
     }
 
@@ -222,9 +224,10 @@ public class Lab2P2__GabrielaMontes {
         int num = entrada.nextInt();
         System.out.println("Ingrese la cantidad de locales: ");
         int locales = entrada.nextInt();
+        entrada = new Scanner(System.in);
         System.out.println("Ingrese la dirección por referencia: ");
         String direccion = entrada.nextLine();
-        Edificio e = new Edificio(num, locales, direccion);
+        Edificio e = new Edificio(num, locales, direccion," ");
         objetos.add(e);
     }
 
@@ -326,6 +329,7 @@ public class Lab2P2__GabrielaMontes {
                 listarcasas(objetos);
                 System.out.println("Ingrese la posición de la casa que quiere modificar");
                 int casa = entrada.nextInt();
+                entrada = new Scanner(System.in);
                 System.out.println("Ingrese el nombre del nuevo dueno");
                 String duecasa = entrada.nextLine();
                 ((Casa) objetos.get(casa)).setDueño(duecasa);
@@ -334,6 +338,7 @@ public class Lab2P2__GabrielaMontes {
                 listaredificios(objetos);
                 System.out.println("Ingrese la posición del edificio que quiere modificar");
                 int edificio = entrada.nextInt();
+                entrada = new Scanner(System.in);
                 System.out.println("Ingrese el nombre del nuevo dueno");
                 String dueedi = entrada.nextLine();
                 ((Edificio) objetos.get(edificio)).setDueño(dueedi);
@@ -342,6 +347,7 @@ public class Lab2P2__GabrielaMontes {
                 listarsolares(objetos);
                 System.out.println("Ingrese la posición del edificio que quiere modificar");
                 int solar = entrada.nextInt();
+                entrada = new Scanner(System.in);
                 System.out.println("Ingrese el nombre del nuevo dueno");
                 String duesol = entrada.nextLine();
                 ((Solar) objetos.get(solar)).setDueño(duesol);
@@ -377,40 +383,58 @@ public class Lab2P2__GabrielaMontes {
         Scanner entrada = new Scanner(System.in);
         System.out.println("A que le desea cambiar el estado: 1. Casas \n 2. Edificios");
         int estado = entrada.nextInt();
+        String esp="En espera de construccion";
+                String cons="En construccion";
+                String lis="lista";
+                String dem="En espera de demolicion";
         switch (estado) {
             case 1:
-                listarcasas(objetos);
+                
+               listarcasas(objetos);
                 System.out.println("Ingrese la posición de la casa que quiere modificar");
                 int casa = entrada.nextInt();
-                if (((Casa) objetos.get(casa)).getEstado().equals(null)) {
-                    ((Casa) objetos.get(casa)).setEstado("En espera de construccion");
-                } else if (((Casa) objetos.get(casa)).getEstado().equalsIgnoreCase("En espera de contruccion")) {
-                    ((Casa) objetos.get(casa)).setEstado("En construccion");
-                } else if (((Casa) objetos.get(casa)).getEstado().equalsIgnoreCase("En construccion")) {
-                    ((Casa) objetos.get(casa)).setEstado("lista");
+                entrada = new Scanner(System.in);
+                System.out.println("Ingrese el nuevo estado");
+                String estado2 = entrada.nextLine();
+                ((Casa) objetos.get(casa)).setEstado(estado2);
+                /*if (((Casa) objetos.get(casa)).getEstado().equals(" ")) {
+                    ((Casa) objetos.get(casa)).setEstado(esp);
+                } else if (((Casa) objetos.get(casa)).getEstado().equalsIgnoreCase(esp)) {
+                    ((Casa) objetos.get(casa)).setEstado(cons);
+                } else if (((Casa) objetos.get(casa)).getEstado().equalsIgnoreCase(cons)) {
+                    ((Casa) objetos.get(casa)).setEstado(lis);
 
-                } else if (((Casa) objetos.get(casa)).getEstado().equalsIgnoreCase("lista")) {
-                    ((Casa) objetos.get(casa)).setEstado("En espera de demolicion");
+                } else if (((Casa) objetos.get(casa)).getEstado().equalsIgnoreCase(lis)) {
+                    ((Casa) objetos.get(casa)).setEstado(dem);
                 } else {
-                    ((Casa) objetos.get(casa)).setEstado(null);
-                }
+                    ((Casa) objetos.get(casa)).setEstado(" ");
+                }*/
                 break;
             case 2:
                 listaredificios(objetos);
                 System.out.println("Ingrese la posición del edificio que quiere modificar");
                 int edificio = entrada.nextInt();
-                if (((Edificio) objetos.get(edificio)).getEstado().equals(null)) {
-                    ((Edificio) objetos.get(edificio)).setEstado("En espera de construccion");
-                } else if (((Edificio) objetos.get(edificio)).getEstado().equalsIgnoreCase("En espera de contruccion")) {
-                    ((Edificio) objetos.get(edificio)).setEstado("En construccion");
-                } else if (((Edificio) objetos.get(edificio)).getEstado().equalsIgnoreCase("En construccion")) {
-                    ((Edificio) objetos.get(edificio)).setEstado("lista");
-
-                } else if (((Edificio) objetos.get(edificio)).getEstado().equalsIgnoreCase("lista")) {
-                    ((Edificio) objetos.get(edificio)).setEstado("En espera de demolicion");
-                } else {
-                    ((Edificio) objetos.get(edificio)).setEstado(null);
+                entrada = new Scanner(System.in);
+                System.out.println("Ingrese el nuevo estado");
+                String estado1 = entrada.nextLine();
+                ((Edificio) objetos.get(edificio)).setEstado(estado1);
+              /* if ((((Edificio) objetos.get(edificio)).getEstado()).equalsIgnoreCase(" ")) {
+                    ((Edificio) objetos.get(edificio)).setEstado(esp);
                 }
+                if ((((Edificio) objetos.get(edificio)).getEstado()).equalsIgnoreCase(esp)) {
+                    ((Edificio) objetos.get(edificio)).setEstado(cons);
+                    
+                } 
+                if ((((Edificio) objetos.get(edificio)).getEstado()).equalsIgnoreCase(cons)) {
+                    ((Edificio) objetos.get(edificio)).setEstado(lis);
+
+                } 
+                if ((((Edificio) objetos.get(edificio)).getEstado()).equalsIgnoreCase(lis)) {
+                    ((Edificio) objetos.get(edificio)).setEstado(dem);
+                } 
+                 if ((((Edificio) objetos.get(edificio)).getEstado()).equalsIgnoreCase(dem)) {
+                    ((Edificio) objetos.get(edificio)).setEstado(" ");
+                }*/
                 break;
 
         }
@@ -433,19 +457,19 @@ public class Lab2P2__GabrielaMontes {
         switch (modificar) {
             case 1:
                 listarcasas(objetos);
-                System.out.println("Ingrese la posición de la casa que quiere modificar");
+                System.out.println("Ingrese la posicion de la casa que quiere modificar");
                 int casa = entrada.nextInt();
                 modificarcasa(objetos, casa);
                 break;
             case 2:
                 listaredificios(objetos);
-                System.out.println("Ingrese la posición del edificio que quiere modificar");
+                System.out.println("Ingrese la posicion del edificio que quiere modificar");
                 int edificio = entrada.nextInt();
                 modificaredificio(objetos, edificio);
                 break;
             case 3:
                 listarsolares(objetos);
-                System.out.println("Ingrese la posición del edificio que quiere modificar");
+                System.out.println("Ingrese la posicion del edificio que quiere modificar");
                 int solar = entrada.nextInt();
                 modificarsolar(objetos, solar);
                 break;
@@ -474,21 +498,22 @@ public class Lab2P2__GabrielaMontes {
                 ((Casa) objetos.get(pos)).setNumerodebloque(numbloc);
                 break;
             case 3:
+                entrada = new Scanner(System.in);
                 Color color;
-                System.out.println("Ingrese el nuevo color");
+               System.out.println("Ingrese el nuevo color: negro, gris, blanco");
                 String col = entrada.nextLine();
-                while ((col != "negro") || (col != "gris") || (col != "blanco")) {
-                    System.out.println("Color no valido");
-                    System.out.println("Ingrese el color: negro, gris, blanco");
-                    col = entrada.nextLine();
-                }
-                if (col.equalsIgnoreCase("negro")) {
-                    color = Color.BLACK;
-                } else if ((col.equalsIgnoreCase("gris"))) {
-                    color = Color.GRAY;
-                } else {
-                    color = Color.WHITE;
-                }
+                while (!((col.equals("negro")) || (col.equals("gris"))|| (col.equals("blanco")))) {
+            System.out.println("Color no valido");
+            System.out.println("Ingrese el color: negro, gris, blanco");
+            col = entrada.nextLine();
+        }
+        if (col.equalsIgnoreCase("negro")) {
+            color = Color.BLACK;
+        } else if ((col.equalsIgnoreCase("gris"))) {
+            color = Color.GRAY;
+        } else {
+            color = Color.WHITE;
+        }
 
                 ((Casa) objetos.get(pos)).setColorcasa(color);
                 break;
@@ -533,6 +558,7 @@ public class Lab2P2__GabrielaMontes {
                 ((Edificio) objetos.get(pos)).setNumerodepisos(numloc);
                 break;
             case 3:
+                entrada = new Scanner(System.in);
                 System.out.println("Ingrese la nueva direccion: ");
                 String dir = entrada.nextLine();
                 ((Edificio) objetos.get(pos)).setDireccionporreferencia(dir);

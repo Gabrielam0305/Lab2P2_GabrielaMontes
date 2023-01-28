@@ -18,11 +18,14 @@ public class Edificio {
     public Edificio() {
     }
 
-    public Edificio(int numerodepisos, int cantidaddelocales, String direccionporreferencia) {
+    public Edificio(int numerodepisos, int cantidaddelocales, String direccionporreferencia, String estado) {
         this.numerodepisos = numerodepisos;
         this.cantidaddelocales = cantidaddelocales;
         this.direccionporreferencia = direccionporreferencia;
+        this.estado = estado;
     }
+
+
 
     public int getNumerodepisos() {
         return numerodepisos;
@@ -68,7 +71,7 @@ public class Edificio {
 
     @Override
     public String toString() {
-        return "El edificio " + "tiene " + numerodepisos + " pisos, " + cantidaddelocales + " locales, y la direccion de " + direccionporreferencia + ", el dueño es " + dueño + ", y el estado es " + estado + '}';
+        return "El edificio " + "tiene " + numerodepisos + " pisos, " + cantidaddelocales + " locales, y la direccion de " + direccionporreferencia + ", el dueño es " + dueño + ", y el estado es " + estado +'}';
     }
     
 }

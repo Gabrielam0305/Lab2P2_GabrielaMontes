@@ -24,7 +24,7 @@ public class Casa {
     public Casa() {
     }
 
-    public Casa(int numerodecasa, int numerodebloque, Color colorcasa, int numancho, int numlargo, int numbaños, int numcuartos) {
+    public Casa(int numerodecasa, int numerodebloque, Color colorcasa, int numancho, int numlargo, int numbaños, int numcuartos, String estado) {
         this.numerodecasa = numerodecasa;
         this.numerodebloque = numerodebloque;
         this.colorcasa = colorcasa;
@@ -32,7 +32,10 @@ public class Casa {
         this.numlargo = numlargo;
         this.numbaños = numbaños;
         this.numcuartos = numcuartos;
+        this.estado = estado;
     }
+
+
 
     public int getNumerodecasa() {
         return numerodecasa;
